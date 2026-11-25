@@ -20,6 +20,17 @@ Import the Behavior Pack and Resource Pack folders into Minecraft's development 
 
 Run `python tools/validate_addon.py` from the repository root. The script parses pack JSON and checks the entity and item-atlas texture files.
 
+## Gullwing door test commands
+
+After summoning a DeLorean, use these commands to open and close its doors:
+
+```mcfunction
+/event entity @e[type=feuerpheoniy:delorean,c=1] feuerpheoniy:open_doors
+/event entity @e[type=feuerpheoniy:delorean,c=1] feuerpheoniy:close_doors
+```
+
+The door state is synchronized to the Resource Pack. The commands are a development control; no in-game door button has been added yet.
+
 ## Known limitations
 
 This is an early development build, not yet verified in-game. The vehicle texture and spawn-egg icon are first-pass pixel-art assets; the geometry is still a blockout rather than a detailed DMC-12 model. Driving behavior, door animation, functional time circuits, and the 88 mph time-travel sequence are not implemented yet. The project targets the Bedrock 26.x format family, but exact engine compatibility must be confirmed with an in-game test.
