@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "DeLorean Mod RP",
+    "description": "Models and visuals for the DeLorean time machine.",
+    "uuid": "d9a4d9a8-3e7b-4cb8-a1cb-4d7e9b8b1b01",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "d9a4d9a8-3e7b-4cb8-a1cb-4d7e9b8b1b02",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}
