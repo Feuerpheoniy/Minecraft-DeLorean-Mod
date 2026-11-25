@@ -1,22 +1,22 @@
 {
   "format_version": "1.21.0",
-  "minecraft": {
-    "item": {
-      "description": {
-        "identifier": "feuerpheoniy:delorean_spawn_egg",
-        "menu_category": {
-          "category": "items"
-        }
+  "minecraft:item": {
+    "description": {
+      "identifier": "feuerpheoniy:delorean_spawn_egg",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 1,
+      "minecraft:icon": {
+        "texture": "delorean_spawn_egg"
       },
-      "components": {
-        "minecraft:max_stack_size": 1,
-        "minecraft:icon": "delorean_spawn_egg",
-        "minecraft:display_name": {
-          "value": "DeLorean Spawn-Ei"
-        },
-        "minecraft:entity_placer": {
-          "entity": "feuerpheoniy:delorean"
-        }
+      "minecraft:display_name": {
+        "value": "DeLorean Spawn-Ei"
+      },
+      "minecraft:entity_placer": {
+        "entity": "feuerpheoniy:delorean"
       }
     }
   }
