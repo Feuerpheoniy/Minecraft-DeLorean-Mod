@@ -62,6 +62,18 @@
             }
           ]
         }
+      },
+      "events": {
+        "feuerpheoniy:activate_time_circuits": {
+          "set_property": {
+            "feuerpheoniy:time_circuit_on": true
+          }
+        },
+        "feuerpheoniy:deactivate_time_circuits": {
+          "set_property": {
+            "feuerpheoniy:time_circuit_on": false
+          }
+        }
       }
     }
   }
