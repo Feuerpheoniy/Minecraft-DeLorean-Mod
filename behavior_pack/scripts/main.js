@@ -2,6 +2,7 @@ import { world, system } from "@minecraft/server";
 
 const DELOREAN_ID = "feuerpheoniy:delorean";
 const MAX_LOOK_DISTANCE = 6;
+const playersWithPrompt = new Set();
 
 function getLookedAtDeLorean(player) {
   try {
@@ -18,9 +19,13 @@ system.runInterval(() => {
   for (const player of world.getPlayers()) {
     const car = getLookedAtDeLorean(player);
     if (!car) {
-      player.onScreenDisplay.setActionBar("");
+      if (playersWithPrompt.has(player.id)) {
+        player.onScreenDisplay.setActionBar("");
+        playersWithPrompt.delete(player.id);
+      }
       continue;
     }
+    playersWithPrompt.add(player.id);
 
     let doorsOpen = false;
     try {
@@ -29,10 +34,14 @@ system.runInterval(() => {
       // Keep the prompt usable even if the property is temporarily unavailable.
     }
 
-    if (player.isSneaking || doorsOpen) {
+    if (doorsOpen && player.isSneaking) {
       player.onScreenDisplay.setActionBar("§l§6[ CLOSE ]§r  §7Interagieren");
-    } else {
+    } else if (!doorsOpen && !player.isSneaking) {
       player.onScreenDisplay.setActionBar("§l§b[ OPEN ]§r  §7Interagieren");
+    } else if (doorsOpen) {
+      player.onScreenDisplay.setActionBar("§eDucken + Interagieren: CLOSE");
+    } else {
+      player.onScreenDisplay.setActionBar("§eAufstehen + Interagieren: OPEN");
     }
   }
 }, 5);
