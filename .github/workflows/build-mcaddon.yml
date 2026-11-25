@@ -1,0 +1,46 @@
+name: Build Minecraft Bedrock add-on
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "behavior_pack/**"
+      - "resource_pack/**"
+      - ".github/workflows/build-mcaddon.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate pack manifests
+        run: |
+          python - <<'PY'
+          import json
+          for path in ("behavior_pack/manifest.json", "resource_pack/manifest.json"):
+              with open(path, encoding="utf-8") as f:
+                  json.load(f)
+              print("Valid JSON:", path)
+          PY
+
+      - name: Package behavior and resource packs
+        run: |
+          mkdir -p dist
+          (cd behavior_pack && zip -qr ../dist/DeLorean-Behavior.mcpack .)
+          (cd resource_pack && zip -qr ../dist/DeLorean-Resources.mcpack .)
+          cd dist
+          zip -q DeLorean-Bedrock.mcaddon DeLorean-Behavior.mcpack DeLorean-Resources.mcpack
+
+      - name: Publish downloadable release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: mcaddon-build-${{ github.run_number }}
+          name: DeLorean Bedrock Add-on build ${{ github.run_number }}
+          files: dist/DeLorean-Bedrock.mcaddon
+          generate_release_notes: true
