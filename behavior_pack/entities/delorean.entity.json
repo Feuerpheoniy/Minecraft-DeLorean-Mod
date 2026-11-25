@@ -12,6 +12,11 @@
             "type": "bool",
             "default": false,
             "client_sync": true
+          },
+          "feuerpheoniy:doors_open": {
+            "type": "bool",
+            "default": false,
+            "client_sync": true
           }
         }
       },
@@ -72,6 +77,16 @@
         "feuerpheoniy:deactivate_time_circuits": {
           "set_property": {
             "feuerpheoniy:time_circuit_on": false
+          }
+        },
+        "feuerpheoniy:open_doors": {
+          "set_property": {
+            "feuerpheoniy:doors_open": true
+          }
+        },
+        "feuerpheoniy:close_doors": {
+          "set_property": {
+            "feuerpheoniy:doors_open": false
           }
         }
       }
