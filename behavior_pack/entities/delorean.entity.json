@@ -1,0 +1,68 @@
+{
+  "format_version": "1.21.0",
+  "minecraft": {
+    "entity": {
+      "description": {
+        "identifier": "feuerpheoniy:delorean",
+        "is_spawnable": true,
+        "is_summonable": true,
+        "is_experimental": false,
+        "properties": {
+          "feuerpheoniy:time_circuit_on": {
+            "type": "bool",
+            "default": false,
+            "client_sync": true
+          }
+        }
+      },
+      "components": {
+        "minecraft:type_family": {
+          "family": [
+            "delorean",
+            "vehicle"
+          ]
+        },
+        "minecraft:collision_box": {
+          "width": 2.1,
+          "height": 1.35
+        },
+        "minecraft:health": {
+          "value": 100,
+          "max": 100
+        },
+        "minecraft:physics": {},
+        "minecraft:pushable": {
+          "is_pushable": false,
+          "is_pushable_by_piston": false
+        },
+        "minecraft:movement": {
+          "value": 0.25
+        },
+        "minecraft:input_ground_controlled": {},
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "crouching_skip_interact": true,
+          "family_types": [
+            "player"
+          ],
+          "seats": {
+            "position": [
+              0,
+              0.65,
+              0.15
+            ]
+          },
+          "interact_text": "Fahren"
+        },
+        "minecraft:damage_sensor": {
+          "triggers": [
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        }
+      }
+    }
+  }
+}
