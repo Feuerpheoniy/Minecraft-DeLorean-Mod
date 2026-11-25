@@ -16,3 +16,8 @@ Import the Behavior Pack and Resource Pack folders into Minecraft's development 
 ## Notes
 
 This is the first development build. Driving controls and time-travel effects will be added and tested incrementally. The project targets the Bedrock 26.x format family; exact engine compatibility must be verified in-game.
+
+
+## Local validation
+
+Run `python tools/validate_addon.py` from the repository root. The script parses pack JSON and checks referenced entity/item atlas textures. It currently reports missing textures until the texture assets are added.
