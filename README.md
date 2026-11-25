@@ -29,7 +29,7 @@ After summoning a DeLorean, use these commands to open and close its doors:
 /event entity @e[type=feuerpheoniy:delorean,c=1] feuerpheoniy:close_doors
 ```
 
-The door state is synchronized to the Resource Pack. The commands are a development control; no in-game door button has been added yet.
+The door state is synchronized to the Resource Pack. The Behavior Pack also includes a Script API interaction: when you look at the DeLorean within six blocks, the action bar shows an OPEN/CLOSE prompt. Use the normal interact/tap control on the DeLorean to activate it; while the doors are open, crouch and interact to close them. The script cancels the default ride interaction during this door action. This is a contextual action-bar prompt, not a separate custom HUD button.
 
 ## Known limitations
 
