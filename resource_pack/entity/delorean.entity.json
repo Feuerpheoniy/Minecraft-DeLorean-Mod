@@ -15,6 +15,12 @@
         },
         "render_controllers": [
           "controller.render.feuerpheoniy.delorean"
+        ],
+        "animations": {
+          "door_controller": "controller.animation.feuerpheoniy.delorean.doors"
+        },
+        "animation_controllers": [
+          "door_controller"
         ]
       }
     }
