@@ -1,0 +1,53 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.feuerpheoniy.delorean.doors": {
+      "initial_state": "closed",
+      "states": {
+        "closed": {
+          "transitions": [
+            {
+              "opening": "query.property('feuerpheoniy:doors_open') == true"
+            }
+          ]
+        },
+        "opening": {
+          "animations": [
+            "doors_open"
+          ],
+          "transitions": [
+            {
+              "closing": "query.property('feuerpheoniy:doors_open') == false"
+            },
+            {
+              "open": "query.all_animations_finished"
+            }
+          ]
+        },
+        "open": {
+          "animations": [
+            "doors_hold"
+          ],
+          "transitions": [
+            {
+              "closing": "query.property('feuerpheoniy:doors_open') == false"
+            }
+          ]
+        },
+        "closing": {
+          "animations": [
+            "doors_close"
+          ],
+          "transitions": [
+            {
+              "opening": "query.property('feuerpheoniy:doors_open') == true"
+            },
+            {
+              "closed": "query.all_animations_finished"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
