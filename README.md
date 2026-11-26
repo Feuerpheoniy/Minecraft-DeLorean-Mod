@@ -7,7 +7,7 @@ A Minecraft Bedrock add-on project for an original DeLorean-inspired time machin
 - Behavior Pack and Resource Pack structure
 - DeLorean entity definition with a driver seat
 - Expanded low-poly DMC-12 geometry with front/rear fascia, gullwing-door outlines, side trim, wheels, and rear time-machine hardware
-- First 64x64 vehicle texture and 16x16 spawn-egg icon
+- 64x64 vehicle texture and custom 64x64 spawn-egg icon
 - Item texture atlas points to the custom spawn-egg icon
 - Entity render controller is present
 - Gullwing doors have open, hold-open, and close animations driven by a client animation controller
