@@ -22,7 +22,7 @@ def check_png(path):
     try:
         with path.open("rb") as image:
             header = image.read(24)
-        if header[:8] != b"\\x89PNG\\r\\n\\x1a\\n" or header[12:16] != b"IHDR":
+        if header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
             errors.append(f"Invalid PNG header: {path.relative_to(ROOT)}")
             return
         width = int.from_bytes(header[16:20], "big")
