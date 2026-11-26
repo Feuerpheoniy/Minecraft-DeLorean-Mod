@@ -1,14 +1,26 @@
 {
-  "format_version":"1.10.0",
-  "minecraft:client_entity":{
-    "description":{
-      "identifier":"feuerpheoniy:delorean",
-      "materials":{"default":"entity_alphatest"},
-      "textures":{"default":"textures/entity/delorean"},
-      "geometry":{"default":"geometry.feuerpheoniy.delorean"},
-      "render_controllers":["controller.render.feuerpheoniy.delorean"],
-      "animations":{"door_controller":"controller.animation.feuerpheoniy.delorean.doors"},
-      "animation_controllers":["door_controller"]
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "feuerpheoniy:delorean",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default": "textures/entity/delorean"
+      },
+      "geometry": {
+        "default": "geometry.feuerpheoniy.delorean"
+      },
+      "render_controllers": [
+        "controller.render.feuerpheoniy.delorean"
+      ],
+      "animations": {
+        "door_controller": "controller.animation.feuerpheoniy.delorean.doors"
+      },
+      "animation_controllers": [
+        "door_controller"
+      ]
     }
   }
 }
