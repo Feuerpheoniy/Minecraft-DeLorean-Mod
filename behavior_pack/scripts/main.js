@@ -5,6 +5,8 @@ const DELOREAN_ID = "feuerpheoniy:delorean";
 const MAX_LOOK_DISTANCE = 6;
 const playersWithPrompt = new Set();
 const playersWithOpenForm = new Set();
+const SPEED_BAR_SEGMENTS = 10;
+const SPEED_BAR_MAX_KMH = 140; // approximately 88 mph
 
 function getLookedAtDeLorean(player) {
   try {
@@ -15,8 +17,38 @@ function getLookedAtDeLorean(player) {
   }
 }
 
+function getRiddenDeLorean(player) {
+  for (const car of player.dimension.getEntities({ type: DELOREAN_ID })) {
+    try {
+      const rideable = car.getComponent("minecraft:rideable");
+      if (rideable?.getRiders().some((rider) => rider.id === player.id)) return car;
+    } catch {}
+  }
+  return undefined;
+}
+
+function showSpeedometer(player, car) {
+  let speedKmh = 0;
+  try {
+    const velocity = car.getVelocity();
+    speedKmh = Math.sqrt(velocity.x ** 2 + velocity.y ** 2 + velocity.z ** 2) * 20 * 3.6;
+  } catch {}
+
+  const progress = Math.max(0, Math.min(1, speedKmh / SPEED_BAR_MAX_KMH));
+  const filled = Math.round(progress * SPEED_BAR_SEGMENTS);
+  const bar = "§a" + "▮".repeat(filled) + "§7" + "▯".repeat(SPEED_BAR_SEGMENTS - filled);
+  player.onScreenDisplay.setActionBar(`§l§bDELOREAN §r ${bar} §f${Math.round(speedKmh)} km/h`);
+}
+
 system.runInterval(() => {
   for (const player of world.getPlayers()) {
+    const riddenCar = getRiddenDeLorean(player);
+    if (riddenCar) {
+      showSpeedometer(player, riddenCar);
+      playersWithPrompt.delete(player.id);
+      continue;
+    }
+
     const car = getLookedAtDeLorean(player);
     if (!car) {
       if (playersWithPrompt.has(player.id)) {
