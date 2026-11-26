@@ -34,6 +34,60 @@
           }
         }
       }
+    },
+    "animation.feuerpheoniy.delorean.doors_close": {
+      "animation_length": 0.8,
+      "loop": false,
+      "bones": {
+        "left_gullwing_door": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              -68
+            ],
+            "0.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_gullwing_door": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              68
+            ],
+            "0.8": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.feuerpheoniy.delorean.doors_hold": {
+      "animation_length": 0.1,
+      "loop": true,
+      "bones": {
+        "left_gullwing_door": {
+          "rotation": [
+            0,
+            0,
+            -68
+          ]
+        },
+        "right_gullwing_door": {
+          "rotation": [
+            0,
+            0,
+            68
+          ]
+        }
+      }
     }
   }
 }
