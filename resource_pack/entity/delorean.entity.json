@@ -16,11 +16,16 @@
         "controller.render.feuerpheoniy.delorean"
       ],
       "animations": {
+        "doors_open": "animation.feuerpheoniy.delorean.doors_open",
+        "doors_close": "animation.feuerpheoniy.delorean.doors_close",
+        "doors_hold": "animation.feuerpheoniy.delorean.doors_hold",
         "door_controller": "controller.animation.feuerpheoniy.delorean.doors"
       },
-      "animation_controllers": [
-        "door_controller"
-      ]
+      "scripts": {
+        "animate": [
+          "door_controller"
+        ]
+      }
     }
   }
 }
