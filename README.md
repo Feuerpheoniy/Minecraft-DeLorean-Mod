@@ -19,7 +19,7 @@ Import the Behavior Pack and Resource Pack folders into Minecraft's development 
 
 ## Validation
 
-Run `python tools/validate_addon.py` from the repository root. The script parses pack JSON and checks the entity and item-atlas texture files.
+Run `python tools/validate_addon.py` from the repository root. The script parses pack JSON and checks entity/item texture paths, geometry IDs, and animation/controller references.
 
 ## Gullwing door test commands
 
@@ -34,4 +34,4 @@ The door state is synchronized to the Resource Pack. The client entity uses the 
 
 ## Known limitations
 
-This is an early development build, not yet verified in-game. The vehicle texture and spawn-egg icon are first-pass pixel-art assets; the geometry is still a blockout rather than a detailed DMC-12 model. Driving behavior, door animation, functional time circuits, and the 88 mph time-travel sequence are not implemented yet. The project targets the Bedrock 26.x format family, but exact engine compatibility must be confirmed with an in-game test.
+This is an early development build, not yet verified in-game. The vehicle texture and spawn-egg icon are first-pass pixel-art assets; the geometry is still a blockout rather than a detailed DMC-12 model. Driving behavior, functional time circuits, and the 88 mph time-travel sequence are not implemented yet. Gullwing-door animation wiring has been added, but it still needs an in-game test. The project targets the Bedrock 26.x format family, but exact engine compatibility must be confirmed with an in-game test.
