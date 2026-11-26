@@ -10,6 +10,7 @@ A Minecraft Bedrock add-on project for an original DeLorean-inspired time machin
 - First 64x64 vehicle texture and 16x16 spawn-egg icon
 - Item texture atlas points to the custom spawn-egg icon
 - Entity render controller is present
+- Gullwing doors have open, hold-open, and close animations driven by a client animation controller
 - Local JSON and texture-reference validator
 
 ## Install
@@ -29,7 +30,7 @@ After summoning a DeLorean, use these commands to open and close its doors:
 /event entity @e[type=feuerpheoniy:delorean,c=1] feuerpheoniy:close_doors
 ```
 
-The door state is synchronized to the Resource Pack. The Behavior Pack includes a Script API interaction: when you look at the DeLorean within six blocks, the action bar shows the available OPEN/CLOSE action. Stand normally, look at the car, and interact to open the door menu with its **OPEN** button. After the doors open, crouch, look at the car, and interact to open the menu with its **CLOSE** button. The script cancels the default ride interaction while this door menu is used. The menu is a clickable Bedrock ActionForm, not a permanently visible HUD button.
+The door state is synchronized to the Resource Pack. The client entity uses the Bedrock 1.10 animation `scripts.animate` wiring, and the Resource Pack controller selects open/hold/close states from the synchronized `feuerpheoniy:doors_open` property. The Behavior Pack includes a Script API interaction: when you look at the DeLorean within six blocks, the action bar shows the available OPEN/CLOSE action. Stand normally, look at the car, and interact to open the door menu with its **OPEN** button. After the doors open, crouch, look at the car, and interact to open the menu with its **CLOSE** button. The script cancels the default ride interaction while this door menu is used. The menu is a clickable Bedrock ActionForm, not a permanently visible HUD button.
 
 ## Known limitations
 
