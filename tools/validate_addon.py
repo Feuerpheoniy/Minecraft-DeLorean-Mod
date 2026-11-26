@@ -9,6 +9,28 @@ BP = ROOT / "behavior_pack"
 RP = ROOT / "resource_pack"
 errors = []
 checked = 0
+checked_png = set()
+
+
+def check_png(path):
+    if path in checked_png:
+        return
+    checked_png.add(path)
+    if not path.exists():
+        errors.append(f"Missing PNG texture: {path.relative_to(ROOT)}")
+        return
+    try:
+        with path.open("rb") as image:
+            header = image.read(24)
+        if header[:8] != b"\\x89PNG\\r\\n\\x1a\\n" or header[12:16] != b"IHDR":
+            errors.append(f"Invalid PNG header: {path.relative_to(ROOT)}")
+            return
+        width = int.from_bytes(header[16:20], "big")
+        height = int.from_bytes(header[20:24], "big")
+        if width < 1 or height < 1:
+            errors.append(f"Invalid PNG dimensions ({width}x{height}): {path.relative_to(ROOT)}")
+    except Exception as exc:
+        errors.append(f"Could not inspect PNG: {path.relative_to(ROOT)} ({exc})")
 
 
 def load_json(path):
@@ -59,8 +81,7 @@ else:
         desc = client_entity["minecraft:client_entity"]["description"]
         for key, value in desc.get("textures", {}).items():
             texture_path = RP / (value + ".png")
-            if not texture_path.exists():
-                errors.append(f"Missing entity texture '{key}': {texture_path.relative_to(ROOT)}")
+            check_png(texture_path)
 
         geometry_id = desc.get("geometry", {}).get("default")
         geometry_path = RP / "models/entity/delorean.geo.json"
@@ -116,13 +137,14 @@ if atlas_path.exists():
             value = entry.get("textures")
             candidates = value if isinstance(value, list) else [value]
             for candidate in candidates:
-                if candidate and not (RP / (candidate + ".png")).exists():
-                    errors.append(f"Missing item atlas texture '{key}': resource_pack/{candidate}.png")
+                if candidate:
+                    check_png(RP / (candidate + ".png"))
 
 print(f"JSON documents parsed: {checked}")
+print(f"PNG textures checked: {len(checked_png)}")
 if errors:
     print("Validation: FAILED")
     for error in errors:
         print(f"- {error}")
     sys.exit(1)
-print("Validation: PASSED (JSON, texture, geometry, and animation-reference checks)")
+print("Validation: PASSED (JSON, PNG headers/dimensions, geometry, and animation-reference checks)")
