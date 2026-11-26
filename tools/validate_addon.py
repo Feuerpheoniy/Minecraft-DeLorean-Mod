@@ -95,9 +95,15 @@ else:
                 for state in controller.get("states", {}).values():
                     for entry in state.get("animations", []):
                         animation_alias = entry if isinstance(entry, str) else next(iter(entry), None) if isinstance(entry, dict) else None
-                        resource = aliases.get(animation_alias, animation_alias)
-                        if isinstance(resource, str) and resource.startswith("animation.") and resource not in animation_names:
+                        resource = aliases.get(animation_alias)
+                        if resource is None and isinstance(animation_alias, str) and animation_alias.startswith(("animation.", "controller.animation.")):
+                            resource = animation_alias
+                        if resource is None:
+                            errors.append(f"Unknown animation alias in controller state: {animation_alias}")
+                        elif resource.startswith("animation.") and resource not in animation_names:
                             errors.append(f"Missing animation in controller state: {resource}")
+                        elif resource.startswith("controller.animation.") and resource not in controller_names:
+                            errors.append(f"Missing nested controller in controller state: {resource}")
     except Exception as exc:
         errors.append(f"Could not inspect client entity animation/geometry references: {exc}")
 
