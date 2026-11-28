@@ -30,8 +30,8 @@
         ]
       },
       "minecraft:collision_box": {
-        "width": 2.1,
-        "height": 1.5
+        "width": 6.3,
+        "height": 4.5
       },
       "minecraft:health": {
         "value": 100,
@@ -55,7 +55,7 @@
         "seats": {
           "position": [
             0,
-            0.2,
+            1,
             0
           ]
         },
